@@ -52,8 +52,8 @@ a, li, p, h1, h2, h3, h4, h5, h6 {
     display: none;
 }
 .navbar .logo {
-    height: 40px;
-    width: 100px;
+    height: auto;
+    width: 50%;
     
 }
 .abrirnav {
@@ -103,7 +103,7 @@ main .inicial article {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(istock.jpg);
+    background-image: url(/assets/istock.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -207,21 +207,20 @@ main .servicos section .servico h3 {
     margin-bottom: 10px;
 }
 
-@media screen and (min-width: 968px) {
-    .search {
-        width: 30%;
-        
+@media screen and (min-width: 608px) {
+    .abrirnav {
+        display: none;
     }
-    .search  input{
-        font-size: 25px;
-    }
+
 }
 .patrocinio-container {
-    padding: 60px 15% 50px;
+    padding: 100px 15% 150px;
 }
 .titulo h2 {
     font-size: 30px;
     color: white;
+    text-align: center;
+    margin: 50px 0px;
 }
 .patrocionio{
     display: flex;
@@ -236,13 +235,16 @@ main .servicos section .servico h3 {
 
 }
 .imoveis {
+    margin-bottom: 200px;
 }
+
 .imoveis-conteudo {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     align-items: center;
     gap: 20px;
     margin-top: 4.5rem;
+    margin: 20px;
 }
 .imovel-popular {
     position: relative;
@@ -258,15 +260,22 @@ main .servicos section .servico h3 {
     font-size: 26px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: white;
 }
 .imovel-popular p {
     margin-bottom: 20px;
+    color: white;
 
 }
 .lista {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
+}
+.lista i, a {
+    color: white;
+
 }
 .Conteudo i{
     font-size: 18px;
@@ -283,6 +292,7 @@ main .servicos section .servico h3 {
     font-size: 17px;
     font-weight: 500;
     transition: all .50s ease;
+    margin: 70px 0px;
 }
 .btn:hover {
     transform: translateY(-7px) scale(0.9);
