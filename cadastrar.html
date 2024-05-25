@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <title>Cadastro Quarto PHP</title>
+</head>
+<header>
+    <nav class="navbar">
+        <button class="abrirnav" onclick="abrirlateral()">
+            <!--Icone abrir nav--><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960"
+                width="40px" fill="#e8eaed">
+                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+            </svg>
+        </button>
+        <a href="index.html"><img class="logo" src="assets/logo (2).png"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="./quartos.html">Quartos</a></li>
+            <li class="login"><a href="login.html">Login <!--Icone login--><svg xmlns="http://www.w3.org/2000/svg"
+                        height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed">
+                        <path
+                            d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" />
+                    </svg></a></li>
+            <li><a href="cadastrar.html">Cadastre-se</a></li>
+        </ul>
+    </nav>
+    <nav class="navbar lateral">
+        <button class="fecharnav" onclick="fecharlateral()"><!--Icone Fechar 'X'--><svg
+                xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg></button>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="login"><a href="login.html">Login<!--Icone login--><svg xmlns="http://www.w3.org/2000/svg"
+                        height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed">
+                        <path
+                            d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" />
+                    </svg></a></li>
+            <li><a href="cadastrar.html">Cadastre-se</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <div class="parent">
+        <form action="">
+            <section>
+                <ul class="textoul">
+                    <li>
+                        <h1 style="font-size: 35px;"><b>Bem vindo ao Quarto PHP!</b></h1>
+                    </li>
+                    <li>
+                        <p>Para <b>agilizar a abertura da sua conta</b>, tenha um documento em mãos.
+                            Pode ser <b>CNH, RG ou RNE.</b> Pedimos essa informação apenas por questões
+                            regulatórias. <b>Não se preocupe, seus dados estão protegidos aqui no Quarto.</b></p>
+                    </li>
+                </ul>
+                <input type="text" placeholder="Nome completo" name="nome" id="nome">
+                <input type="text" placeholder="CPF" name="cpf" id="cpf">
+                <input type="text" placeholder="Data de nascimento (dd/mm/aaaa)" name="data" id="data">
+                <input type="tel" placeholder="Telefone celular" name="tel" id="tel">
+                <input type="email" placeholder="Email" name="email" id="email">
+                <div class="password-container">
+                    <input type="password" class="inputpassword" placeholder="Senha" name="senha" id="senha">
+                    <svg class="toggle-icon" onclick="togglePasswordVisibility('senha')" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/>
+                    </svg>
+                </div>
+                <div class="password-container">
+                    <input type="password" class="inputpassword" placeholder="Confirmar senha" name="confirmarsenha" id="confirmarsenha">
+                    <svg class="toggle-icon" onclick="togglePasswordVisibility('confirmarsenha')" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/>
+                    </svg>
+                </div>
+                <input class="enviar" type="submit" value="Enviar informações">
+
+            </section>
+
+        </form>
+    </div>
+    <section class="patrocinio-container">
+        <article class="titulo">
+            <h2>Patrocinadores</h2>
+        </article>
+        <article class="patrocionio">
+            <div class="logo-patrocionio">
+                <img alt="">
+            </div>
+            <div class="logo-patrocionio">
+                <img src="assets/f2.png" alt="">
+            </div>
+            <div class="logo-patrocionio">
+                <img src="assets/f3.png" alt="">
+            </div>
+            <div class="logo-patrocionio">
+                <img src="assets/f4.png" alt="">
+            </div>
+            <div class="logo-patrocionio">
+                <img src="assets/f5.png" alt="">
+            </div>
+        </article>
+    </section>
+</body>
+<footer>
+
+</footer>
+<script src="index.js"></script>
+
+</html>
