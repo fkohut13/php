@@ -103,7 +103,7 @@ main .inicial article {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(/assets/istock.jpg);
+    background-image: url(./assets/istock.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -373,7 +373,7 @@ input.enviar:hover{
     line-height: 1.5;
     color: white;
 }
-.parent section{
+#formulario-container #formulario-secao, .parent section{
     margin: 100px 0px;
     display: flex;
     align-items: center;
@@ -381,18 +381,65 @@ input.enviar:hover{
     flex-direction: column;
     width: 100%;
 }
+#formulario-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+#formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#formulario input {
+    width: 50%;
+}
+.login-container {
+    margin: 100px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-container section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.login-container section ul {
+    width: 100%;
+}
+
+.login-container section input,
+.login-container section .password-container{
+    width: 100%;
+}
+.login-container section .esqueceu-senha{
+    color: rgb(36, 174, 198);
+    margin: 20px 0px;
+    font-weight: 600;
+    text-decoration: underline;
+    
+}
+
 .password-container {
     position: relative;
     display: flex;
     align-items: center;
-    width: 40%;
+    width: 50%;
+    height: auto;
 }
 .inputpassword {
     margin-top: 25px;
-    height: 70px;
-    width: 100%;
     font-size: 25px;
     padding-right: 30px;
+    width: 100%!important;
 }
 .checkbox{
     position: absolute;
@@ -402,7 +449,7 @@ input.enviar:hover{
 }
 .toggle-icon {
     position: absolute;
-    right: 15px; /* Ajuste conforme necessário */
+    right: 15px; 
     top: 42px;
     cursor: pointer;
     width: 25px;
@@ -411,6 +458,36 @@ input.enviar:hover{
 }
 .toggle-icon:hover{
     background-color: rgb(219, 219, 219);
+}
+p.mensagem-erro{
+    display: none;
+    color: red;
+}
+#data {
+    outline: none;
+}
+#popuperro {
+    color: white;
+    font-weight: 600;
+    background-color: red;
+    opacity: 90%;
+    border: solid black 2px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    transition: opacity 0.3s ease-out;
+    animation: shake 1s;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
 }
 
 

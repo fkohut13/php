@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     topobotao.addEventListener('click', subirprotopo())
     abrirbotao.addEventListener('click', abrirlateral());
     fecharbotao.addEventListener('click', fecharlateral());
+
+    
+
+
 })
 function abrirlateral() {
     const lateral = document.querySelector('.lateral');
@@ -14,6 +18,7 @@ function fecharlateral() {
     const lateral = document.querySelector('.lateral');
     lateral.style.left = '-250px';
 }
+
 
 function subirprotopo() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -87,5 +92,7 @@ function togglePasswordVisibility(fieldId) {
     const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
     inputField.setAttribute('type', type);
 }
+
+
 
 
