@@ -19,7 +19,7 @@ require_once("./autoload.php");
     <?php
     use App\controller\AdministradorController;
     include_once 'header.php';
-    AdministradorController::logar();
+    AdministradorController::paginalogin();
     include_once 'footer.php'?>
     
 </body>

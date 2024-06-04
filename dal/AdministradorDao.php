@@ -30,7 +30,7 @@ abstract class AdministradorDao
         try {
             $pdo = Conn::getConn();
 
-            $sql = $pdo->prepare("SELECT senha FROM administradores WHERE email = ?");
+            $sql = $pdo->prepare("SELECT senha FROM administradores WHERE email = ?"); //Verificação de usuario ou admin
             $sql->execute([$email]);
             $result = $sql->fetch(PDO::FETCH_ASSOC);
             if ($result === false) {

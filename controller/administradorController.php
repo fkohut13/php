@@ -35,47 +35,47 @@ abstract class AdministradorController{
         AdministradorView::formulario();
     }
 
-    public static function logar() {
+    public static function paginalogin() {
         if ($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST["email"])) {
             $email = Util::prepararTexto($_POST["email"]);
             $senha = Util::prepararTexto($_POST["senha"]);
-        
             try {
                 if (AdministradorDao::logar($email, $senha)) {
-                    // Login bem-sucedido
                     echo Cx::caixaSucesso("Logado com sucesso!");
-                    $admindata = AdministradorDao::retornaAdmin($email);
-                    $admin = new Administrador();
-                    $admin-> iniciar($admindata['id'],$admindata['nome'],$admindata['cpf'],$admindata['datanasc'],$admindata['telefone'],$admindata['email'],$admindata['senha']);
+                    $_SESSION['logado'] = true;
 
                 } else {
-                    ?>
-                    <button class="popuperro" id="popuperro">Email ou senha incorretos!</button>
-                    <script>
-                        setTimeout(function() {
-                        var errorButton = document.getElementById('popuperro');
-                        if (errorButton) {
-                        errorButton.style.opacity = '0%';
-                        }
-                        }, 2000);
-                    </script>
-                    <?php
+                    echo Cx::caixaErro("Email ou senha incorretos!");
+
                 }
-            } catch(Exception $e) {
+            } 
+            catch(Exception $e) {
                 self::$msg = $e->getMessage();
             }
+            
+
         }
+           
         Login::loginFormulario();
-
-
+        
     }
 
+  
+    public static function usuarioLogado() {
+        // Verifica se a variável de sessão 'logado' está definida e é true
+        return isset($_SESSION['logado']) && $_SESSION['logado'] === true;
+    }
+    
 
 
 
 
 
 
+/*  $admindata = AdministradorDao::retornaAdmin($email);
+                    $admin = new Administrador();
+                    $admin-> iniciar($admindata['id'],$admindata['nome'],$admindata['cpf'],$admindata['datanasc'],$admindata['telefone'],$admindata['email'],$admindata['senha']);
+                    return $admin; */
 
 
 

@@ -22,6 +22,10 @@ class Administrador {
         return $this->$atributo;
     }
 
+    public function  getAtributo() {
+        return $this->nome;
+    }
+    
     public function __set($atributo, $valor){
         $this->$atributo = $valor;
     }
