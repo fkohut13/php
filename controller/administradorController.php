@@ -5,6 +5,7 @@ use App\model\Administrador;
 use App\dal\AdministradorDao;
 use App\util\Caixas as Cx;
 use App\view\AdministradorView;
+use App\view\deletarView\Deletar;
 use App\view\loginView\Login;
 use \Exception;
 
@@ -25,7 +26,7 @@ abstract class AdministradorController{
 
             try{
                 AdministradorDao::cadastrar($admin);
-                echo Cx::caixaSucesso("Cadastrado com sucesso!");
+                echo Cx::caixaSucesso("Cadastrado com sucesso!", 3);
                 
             }catch(Exception $e){
                 self::$msg = $e->getMessage();
@@ -41,11 +42,14 @@ abstract class AdministradorController{
             $senha = Util::prepararTexto($_POST["senha"]);
             try {
                 if (AdministradorDao::logar($email, $senha)) {
-                    echo Cx::caixaSucesso("Logado com sucesso!");
+                    echo Cx::caixaSucesso("Logado com sucesso!", 3);
                     $_SESSION['logado'] = true;
+                    $usuarioInfo = AdministradorDao::retornaAdmin($email);
+                    $_SESSION['usuario_info'] = $usuarioInfo;
+                    header("Location: ./index.php");
 
                 } else {
-                    echo Cx::caixaErro("Email ou senha incorretos!");
+                    echo Cx::caixaErro("Email ou senha incorretos!!", 3);
 
                 }
             } 
@@ -59,12 +63,41 @@ abstract class AdministradorController{
         Login::loginFormulario();
         
     }
+    public static function deletar() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST["cpf"])) {
+            $cpf_form = Util::prepararTexto($_POST['cpf']);
+            $cpf_db = AdministradorController::getAtributoUsuario('cpf');
+            if ($cpf_db == $cpf_form) {
+                echo "Existe";
+                echo "<p>Cpf formulario = " . $cpf_form . "</p>";
+                echo "<p>Cpf banco de dados = " . $cpf_db . "</p>";
+            }
+            else 
+                echo"Nope";
+            
+        }
+        Deletar::exibirFormularioDeletar();
+    }
 
   
     public static function usuarioLogado() {
-        // Verifica se a variável de sessão 'logado' está definida e é true
+        Util::startSession();
         return isset($_SESSION['logado']) && $_SESSION['logado'] === true;
     }
+    public static function getAtributoUsuario(string $atributo) {
+        Util::startSession(); 
+        return isset($_SESSION['usuario_info']) ? $_SESSION['usuario_info'][$atributo] : '';
+    }
+    public static function deslogar() {
+        Util::startSession();
+        $_SESSION['usuario_info'] = array();
+        session_destroy();
+        $_SESSION['logado'] = false;
+        header("Location: ./login.php");
+        exit();
+    }
+    
+
     
 
 

@@ -75,4 +75,16 @@ abstract class AdministradorDao
             throw new Exception("Ocorreu um erro inesperado " . $e->getMessage() . $e->getCode());
         }
     }
+    public static function deletar($cpf) {
+        try{
+            $pdo = Conn::getConn();
+            $sql = $pdo->prepare("DELETE FROM `administradores` WHERE cpf = ?");
+            $sql->execute($cpf);
+            return true;
+            
+        }catch (Exception $e) {
+            throw new Exception("Ocorreu um erro inesperado " . $e->getMessage() . $e->getCode());
+        }
+
+    }
 }

@@ -4,7 +4,7 @@ use \Exception;
 
 class Functions{
     public static function prepararTexto($texto){
-        return trim(htmlentities($texto));
+        return trim($texto);
     }
     public static function prepararData($data) {
         $dateParts = explode('/', $data);
@@ -14,5 +14,11 @@ class Functions{
             throw new Exception("Formato de data inválido. Porfavor use dd/mm/yyyy.");
         }
     }
+    public static function startSession() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+    
 }
 

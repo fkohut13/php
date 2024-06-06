@@ -13,8 +13,9 @@
 use App\controller\AdministradorController;
 
             if (AdministradorController::usuarioLogado()) {
+                $nomeUsuario = AdministradorController::getAtributoUsuario('nome')
                 ?>
-                <li class="login"><a href="#">Ola! <?php ; ?> <!--Icone login--></a></li>
+                <li class="login"><a href="./InfoLogado.php">Ola <?php echo ($nomeUsuario); ?>! <!--Icone login--></a></li>
                 <?php
 
             } else {

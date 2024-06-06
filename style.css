@@ -491,3 +491,63 @@ p.mensagem-erro{
 }
 
 
+.infousuario {
+    margin: 20px auto;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Article styles */
+.titulo-usuarioinfo h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.detalhes-usuario label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.detalhes-usuario span {
+    display: block;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+article.detalhes-usuario button {
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+#logout {
+    background-color: rgb(175, 159, 41);
+    color: black;
+    font-weight: bold;
+}
+#deletar {
+    background-color: rgb(180, 54, 54);
+    color: black;
+    font-weight: bold;
+}
+#deletar:hover {
+    background-color: rgb(235, 13, 13);
+    color: white;
+}
+article.detalhes-usuario button#logout:hover {
+    background-color: rgb(238, 214, 29);
+}

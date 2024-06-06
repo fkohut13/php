@@ -1,3 +1,8 @@
+<?php
+namespace App;
+require_once("./autoload.php");
+use App\controller\AdministradorController as admin;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
