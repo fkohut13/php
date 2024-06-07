@@ -26,7 +26,6 @@ class Login {
                 </div>
                 <input class="enviar" type="submit" value="Entrar">
                 <a href="#" class="esqueceu-senha">Esqueceu sua senha?</a>
-
             </section>
 
         </form>

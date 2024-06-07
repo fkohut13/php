@@ -5,7 +5,7 @@ use \PDOException;
 
 abstract class Conn {
     private static $conn;
-    private static $host = "localhost:3308"; //Minha config é 3308, trocar para 3307 padrão.
+    private static $host = "localhost:3306"; //Minha config é 3308, trocar para 3307 padrão.
     private static $dbname = "quartophpdb";
     private static $login = "root";
     private static $senha = "";
