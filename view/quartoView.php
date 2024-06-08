@@ -7,6 +7,23 @@ class Quarto {
     public static function paginaQuarto(){
          ?>
             <div class="container">
+            <section class="imagemquarto">
+                    <picture>
+                        <img src="assets/q1.webp" alt="">
+                    </picture>
+                    <picture>
+                        <img src="assets/q2.webp" alt="">
+                    </picture>
+                    <picture>
+                        <img src="assets/q3.webp" alt="">
+                    </picture>
+                    <picture>
+                        <img src="assets/q4.webp" alt="">
+                    </picture>
+                    <picture>
+                        <img src="assets/q5.webp" alt="">
+                    </picture>
+                </section>
                 <header>
                     <h1>Chalé Palmen Haus com banheira de hidromassagem</h1>
 
@@ -62,12 +79,8 @@ class Quarto {
                         </div>
                     </div>
                 </header>
-
-                <section>
-                    <picture>
-                        <img src="/assets/q1.webp" alt="">
-                    </picture>
-                </section>
+                
+                
             </div>
     <?php
     }
