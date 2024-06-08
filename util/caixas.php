@@ -19,7 +19,11 @@ class Caixas
                 var element = document.getElementById("sucesso-caixa");
                 if (element) {
                     element.style.opacity = "0%";
+                    element.addEventListener("transitionend", function() {
+                    element.style.display = "none";
+                }, { once: true });
                 }
+                    
             }, ' . ($duracao * 1000) . ');
         </script>';
         }
@@ -38,11 +42,13 @@ class Caixas
                 var element = document.getElementById("caixa-erro");
                 if (element) {
                     element.style.opacity = "0%";
+                    element.addEventListener("transitionend", function() {
+                    element.style.display = "none";
+                }, { once: true });
                 }
             }, ' . ($duracao * 1000) . ');
         </script>';
         }
         return $html;
-
     }
 }

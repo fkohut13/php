@@ -500,7 +500,6 @@ p.mensagem-erro{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Article styles */
 .titulo-usuarioinfo h2 {
     font-size: 24px;
     font-weight: bold;
@@ -509,23 +508,21 @@ p.mensagem-erro{
     text-align: center;
 }
 
-.detalhes-usuario label {
-    display: block;
-    margin-bottom: 5px;
+
+.detalhes-usuario .usuario-detalhe label {
     font-weight: bold;
+   
+}
+div.usuario-detalhe {
+    margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.detalhes-usuario span {
-    display: block;
-    margin-bottom: 15px;
-    font-family: Arial, Helvetica, sans-serif;
+.usuario-detalhe .editar {
+    margin-left: 10px;
 }
 
-
-
-
-article.detalhes-usuario button {
+article.detalhes-usuario .acoes button {
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -548,6 +545,26 @@ article.detalhes-usuario button {
     background-color: rgb(235, 13, 13);
     color: white;
 }
+.editar-btn {
+    background-color: #5f6368;
+    width: 20px;
+    height: 20px;
+    border-radius: 30%;
+    border: none;
+}
+.editar-btn i {
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+    font-weight: bold;
+}
+.editar-atributo {
+    height: 20px;
+    font-size: 15px;
+    width: 80%;
+
+}
 article.detalhes-usuario button#logout:hover {
     background-color: rgb(238, 214, 29);
 }
+
+

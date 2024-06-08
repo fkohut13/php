@@ -25,7 +25,7 @@ class Login {
                     </svg>
                 </div>
                 <input class="enviar" type="submit" value="Entrar">
-                <a href="#" class="esqueceu-senha">Esqueceu sua senha?</a>
+                <a href="./recuperarsenha.php" class="esqueceu-senha">Esqueceu sua senha?</a>
 
             </section>
 

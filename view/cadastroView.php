@@ -2,12 +2,12 @@
 
 namespace App\view;
 
-class AdministradorView
+class CadastroView
 {
 
     public static function formulario()
     {
-       ?>
+?>
         <div id="formulario-container">
             <section id="formulario-secao">
                 <form action="?p=cad" method="post" id="formulario">
@@ -32,10 +32,10 @@ class AdministradorView
                 </form>
             </section>
         </div>
-    <?php
+<?php
     }
 
-    public static function listar($administradores)
+    /*public static function listar($administradores)
     {
     ?>
         <table>
@@ -54,10 +54,10 @@ class AdministradorView
                     <td><a href="?p=deletar&del=<?= $admins->__get("id") ?>">Excluir</a></td>
                 </tr>
             <?php endforeach; ?>
-        </table>
+        </table> 
 
 
 
 <?php
-    }
+    }*/
 }

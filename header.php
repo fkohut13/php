@@ -1,3 +1,9 @@
+<?php
+require_once("./autoload.php");
+use App\controller\AdministradorController;
+use App\controller\ClienteController;
+
+?>
 <nav class="navbar">
     <button class="abrirnav" onclick="abrirlateral()">
         <!--Icone abrir nav--><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed">
@@ -9,24 +15,27 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="./quartos.php">Quartos</a></li>
         <?php
-
-use App\controller\AdministradorController;
-
-            if (AdministradorController::usuarioLogado()) {
-                $nomeUsuario = AdministradorController::getAtributoUsuario('nome')
+            if (AdministradorController::adminLogado()) {
+                $nomeUsuario = AdministradorController::getAtributoLogado('nome');
                 ?>
-                <li class="login"><a href="./InfoLogado.php">Ola <?php echo ($nomeUsuario); ?>! <!--Icone login--></a></li>
+                <li class="login"><a href="./InfoLogado.php">Minha Conta <?php echo ($nomeUsuario); ?>!</a></li>
+                <li><a href="cadastrar.php">Cadastrar Admin</a></li>
                 <?php
 
-            } else {
+            }  else if (AdministradorController::usuarioLogado()) {
+                $nomeUsuario = AdministradorController::getAtributoLogado('nome');
                 ?>
-                <li class="login"><a href="login.php">Login <!--Icone login--><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed">
-                    <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" />
-                </svg></a></li>
+                <li class="login"><a href="./InfoLogado.php">Minha Conta<?php echo ($nomeUsuario); ?>!</a></li>
+                <li><a href="cadastrar.php">Cadastre-se</a></li>
+                <?php
+            }
+            else {
+                ?>
+                <li class="login"><a href="login.php">Login <!--Icone login--></a></li>
+                <li><a href="cadastrar.php">Cadastre-se</a></li>
                 <?php
             }
         ?>
-        <li><a href="cadastrar.php">Cadastre-se</a></li>
         
     </ul>
 </nav>
@@ -37,9 +46,28 @@ use App\controller\AdministradorController;
 
     <ul>
         <li><a href="index.php">Home</a></li>
-        <li class="login"><a href="login.php'">Login<!--Icone login--><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed">
-                    <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" />
-                </svg></a></li>
+        <li><a href="./quartos.php">Quartos</a></li>
+        <?php
+            if (AdministradorController::adminLogado()) {
+                $nomeUsuario = AdministradorController::getAtributoLogado('nome');
+                ?>
+                <li class="login"><a href="./InfoLogado.php">Ola <?php echo ($nomeUsuario); ?>! <!--Icone login--></a></li>
+                <li><a href="cadastrar.php">Cadastrar Admin</a></li>
+                <?php
+
+            }  else if (AdministradorController::adminLogado()) {
+                $nomeUsuario = AdministradorController::getAtributoLogado('nome');
+                ?>
+                <li class="login"><a href="./InfoLogado.php">Ola <?php echo ($nomeUsuario); ?>! <!--Icone login--></a></li>
+                <li><a href="cadastrar.php">Cadastre-se</a></li>
+                <?php
+            }
+            else {
+                ?>
+                <li class="login"><a href="login.php">Login <!--Icone login--></a></li>
+                <?php
+            }
+        ?>
         <li><a href="cadastrar.php">Cadastre-se</a></li>
     </ul>
 </nav>

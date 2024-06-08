@@ -1,7 +1,7 @@
 <?php
 
 namespace APP\dal;
-
+require_once("./autoload.php");
 use App\model\Administrador;
 use \App\dal\Conn;
 use \Exception;
@@ -30,8 +30,8 @@ abstract class AdministradorDao
         try {
             $pdo = Conn::getConn();
 
-            $sql = $pdo->prepare("SELECT senha FROM administradores WHERE email = ?"); //Verificação de usuario ou admin
-            $sql->execute([$email]);
+            $sql = $pdo->prepare("SELECT senha FROM administradores WHERE email = ? UNION SELECT senha FROM clientes WHERE email = ?"); //Verificação de usuario ou admin
+            $sql->execute([$email,$email]);
             $result = $sql->fetch(PDO::FETCH_ASSOC);
             if ($result === false) {
                 return false;
@@ -79,12 +79,22 @@ abstract class AdministradorDao
         try{
             $pdo = Conn::getConn();
             $sql = $pdo->prepare("DELETE FROM `administradores` WHERE cpf = ?");
-            $sql->execute($cpf);
+            $sql->execute([$cpf]);
             return true;
             
         }catch (Exception $e) {
             throw new Exception("Ocorreu um erro inesperado " . $e->getMessage() . $e->getCode());
         }
 
+    }
+    public static function editar($atributo, $novoValor, $id) {
+        try {
+            $pdo = Conn::getConn();
+            $sql = $pdo->prepare("UPDATE `administradores` SET `$atributo`=? WHERE `id`=?");
+            $sql->execute([$novoValor, $id]);
+            return true;
+        } catch (Exception $e) {
+            throw new Exception("Ocorreu um erro inesperado " . $e->getMessage() . $e->getCode());
+        }
     }
 }
