@@ -78,6 +78,35 @@ class Quarto {
                             </div>
                         </div>
                     </div>
+                    <div class="container2">
+                            <p id="preco"><b>R$559</b> noite</p>
+                            <div class="datas">
+                                <div class="checkin">
+                                    <label for="checkin">CHECK-IN</label>
+                                    <input type="date" id="checkin" value="2024-06-08">
+                                </div>
+                                <div class="checkout">
+                                    <label for="checkout">CHECK-OUT</label>
+                                    <input type="date" id="checkin" value="2024-06-09">
+                                </div>
+                            </div>
+                            <div class="hospedes">
+                                <label for="quantidadeHospededs">HÓSPEDES</label>
+                                <select id="quantidadeHospedes">
+                                    <option value="1">1 hóspede</option>
+                                    <option value="2">2 hóspedes</option>
+                                    <option value="3">3 hóspedes</option>
+                                    <option value="4">4 hóspedes</option>
+                                    <option value="5">5 hóspedes</option>
+                                    <option value="6">6 hóspedes</option>
+                                    <option value="7">7 hóspedes</option>
+                                    <option value="8">8 hóspedes</option>
+                                    <option value="9">9 hóspedes</option>
+                                    <option value="10">10 hóspedes</option>
+                                </select>
+                            </div>
+                            <button type="submit">Reservar</button>
+                    </div>
                 </header>
                 
                 

@@ -364,7 +364,7 @@ input.enviar:hover{
     text-align: left;
     flex-direction: column;
     width: 40%;
-    color: rgb(255, 195, 0);;
+    color: rgb(255, 195, 0);
 }
 .textoul p{
     margin-top: 22px;
@@ -637,4 +637,98 @@ article.detalhes-usuario button#logout:hover {
 }
 .imagemquarto picture:hover img{
     scale: 1.2;
+}
+.container2{
+    width: 80%;
+    max-width: 1266px;
+    margin: 5px auto 0;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.container2 p{
+    font-size: 25px;
+    margin-left: 5px;
+    padding-top: 10px;
+}
+.checkin{
+    margin-left: 5px;
+    margin-top: 15px;
+    width: 20%;
+    border: solid black 1px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-bottom: 5px;
+}
+.checkin label{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.checkin input{
+    margin-top: 0;
+    width: 95%;
+    border: none;
+    font-size: 150%;
+}
+.checkout{
+    margin-left: 5px;
+    margin-top: 15px;
+    width: 20%;
+    border: solid black 1px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-bottom: 5px;
+}
+.checkout label{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.checkout input{
+    margin: 0;
+    width: 95%;
+    border: none;
+    font-size: 150%;
+}
+.datas{
+    display: flex;
+    justify-content:baseline;
+}
+.hospedes{
+    margin-left: 5px;
+    margin-top: 1px;
+    width: 40.7%;
+    border: solid black 1px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.hospedes label{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5px;
+    font-weight: bold;
+}
+.hospedes select{
+    margin: 0;
+    width: 95%;
+    border: none;
+    margin-top: 5px;
+    font-size: 20px;
+}
+.container2 button{
+    width: 40.5%;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    background-color: rgb(255, 195, 0);
+    margin-left: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
