@@ -79,6 +79,7 @@ class Quarto {
                         </div>
                     </div>
                     <div class="container2">
+                        <div class="left">
                             <p id="preco"><b>R$559</b> noite</p>
                             <div class="datas">
                                 <div class="checkin">
@@ -91,21 +92,39 @@ class Quarto {
                                 </div>
                             </div>
                             <div class="hospedes">
-                                <label for="quantidadeHospededs">HÓSPEDES</label>
-                                <select id="quantidadeHospedes">
-                                    <option value="1">1 hóspede</option>
-                                    <option value="2">2 hóspedes</option>
-                                    <option value="3">3 hóspedes</option>
-                                    <option value="4">4 hóspedes</option>
-                                    <option value="5">5 hóspedes</option>
-                                    <option value="6">6 hóspedes</option>
-                                    <option value="7">7 hóspedes</option>
-                                    <option value="8">8 hóspedes</option>
-                                    <option value="9">9 hóspedes</option>
-                                    <option value="10">10 hóspedes</option>
-                                </select>
+                                    <label for="quantidadeHospededs">HÓSPEDES</label>
+                                    <select id="quantidadeHospedes">
+                                        <option value="1">1 hóspede</option>
+                                        <option value="2">2 hóspedes</option>
+                                        <option value="3">3 hóspedes</option>
+                                        <option value="4">4 hóspedes</option>
+                                        <option value="5">5 hóspedes</option>
+                                        <option value="6">6 hóspedes</option>
+                                        <option value="7">7 hóspedes</option>
+                                        <option value="8">8 hóspedes</option>
+                                        <option value="9">9 hóspedes</option>
+                                        <option value="10">10 hóspedes</option>
+                                    </select>
                             </div>
                             <button type="submit">Reservar</button>
+                        </div> 
+                        <div class="right">
+                            <div class="text">Voce ainda não será cobrado</div>
+                            <div class="precos">
+                                <div class="preco1">
+                                    <u>R$599 x 5 noites</u>
+                                    <p>R$2.795</p>
+                                </div>
+                                <div class="preco2">
+                                    <u>Taxa de limpeza</u>
+                                    <p>R$139</p>
+                                </div>
+                                <div class="preco3">
+                                    <u>Taxa de serviço Airbnb</u>
+                                    <p>R$471</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </header>
                 
