@@ -287,7 +287,7 @@ main .servicos section .servico h3 {
 .centro-btn .btn {
     display: inline-block;
     padding: 18px 28px;
-    background-color: rgb(75, 143, 75);
+    background-color: rgb(17, 33, 180);
     color: white;
     font-size: 17px;
     font-weight: 500;
@@ -566,5 +566,3 @@ article.detalhes-usuario .acoes button {
 article.detalhes-usuario button#logout:hover {
     background-color: rgb(238, 214, 29);
 }
-
-

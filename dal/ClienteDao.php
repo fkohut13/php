@@ -62,7 +62,7 @@ abstract class Clientedaoclasse
     public static function editar($atributo, $novoValor, $id) {
         try {
             $pdo = Conn::getConn();
-            $sql = $pdo->prepare("UPDATE `clientes` SET `$atributo`=? WHERE `id`=?");
+            $sql = $pdo->prepare("UPDATE `clientes` SET `$atributo`=? WHERE `clienteid`=?");
             $sql->execute([$novoValor, $id]);
             return true;
         } catch (Exception $e) {

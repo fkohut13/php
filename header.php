@@ -18,14 +18,14 @@ use App\controller\ClienteController;
             if (AdministradorController::adminLogado()) {
                 $nomeUsuario = AdministradorController::getAtributoLogado('nome');
                 ?>
-                <li class="login"><a href="./InfoLogado.php">Minha Conta <?php echo ($nomeUsuario); ?>!</a></li>
+                <li class="login"><a href="./InfoLogado.php">Minha Conta</a></li>
                 <li><a href="cadastrar.php">Cadastrar Admin</a></li>
                 <?php
 
             }  else if (AdministradorController::usuarioLogado()) {
                 $nomeUsuario = AdministradorController::getAtributoLogado('nome');
                 ?>
-                <li class="login"><a href="./InfoLogado.php">Minha Conta<?php echo ($nomeUsuario); ?>!</a></li>
+                <li class="login"><a href="./InfoLogado.php">Minha Conta</a></li>
                 <li><a href="cadastrar.php">Cadastre-se</a></li>
                 <?php
             }
@@ -51,14 +51,14 @@ use App\controller\ClienteController;
             if (AdministradorController::adminLogado()) {
                 $nomeUsuario = AdministradorController::getAtributoLogado('nome');
                 ?>
-                <li class="login"><a href="./InfoLogado.php">Ola <?php echo ($nomeUsuario); ?>! <!--Icone login--></a></li>
+                <li class="login"><a href="./InfoLogado.php">Minha Conta <!--Icone login--></a></li>
                 <li><a href="cadastrar.php">Cadastrar Admin</a></li>
                 <?php
 
             }  else if (AdministradorController::adminLogado()) {
                 $nomeUsuario = AdministradorController::getAtributoLogado('nome');
                 ?>
-                <li class="login"><a href="./InfoLogado.php">Ola <?php echo ($nomeUsuario); ?>! <!--Icone login--></a></li>
+                <li class="login"><a href="./InfoLogado.php">Minha Conta <!--Icone login--></a></li>
                 <li><a href="cadastrar.php">Cadastre-se</a></li>
                 <?php
             }

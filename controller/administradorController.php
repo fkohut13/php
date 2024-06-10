@@ -2,13 +2,20 @@
 namespace App\controller;
 require_once("./autoload.php");
 require("./dal/ClienteDao.php");
+require("./view/recuperarView.php");
+require("./view/novoimovelView.php");
+require("./dal/ImovelDao.php");
 use App\util\Functions as Util;
 use App\model\Administrador;
 use App\dal\AdministradorDao;
 use App\dal\Clientedaoclasse;
+use APP\dal\imovelDaoClasse;
+use App\model\Imovel;
 use App\util\Caixas as Cx;
 use App\view\CadastroView;
 use App\view\loginView\Login;
+use App\view\novaSenha as recuperarview;
+use App\view\CadastroImovel as cadastroimovel;
 use \Exception;
 
 
@@ -17,6 +24,7 @@ abstract class AdministradorController{
 
     public static function cadastrar(){
         if ($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST["nome"])) {
+            Util::CSRF();
             [$nome, $cpf, $data, $tel, $email, $senha] = array_map([Util::class, 'prepararTexto'], array_values($_POST));
             $dataformatada = Util::prepararData($data);
             $admin = new Administrador();
@@ -80,9 +88,14 @@ abstract class AdministradorController{
             }    
       
     }
-    public static function atualizarinfo() {
+    public static function atualizarinfoAdmin() {
         $email = AdministradorController::getAtributoLogado('email');
         $usuarioInfo = AdministradorDao::retornaAdmin($email);
+        $_SESSION['info_logado'] = $usuarioInfo;
+    }
+    public static function atualizarinfoUsuario() {
+        $email = AdministradorController::getAtributoLogado('email');
+        $usuarioInfo = Clientedaoclasse::retornaCliente($email);
         $_SESSION['info_logado'] = $usuarioInfo;
     }
 
@@ -96,14 +109,9 @@ abstract class AdministradorController{
         return isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] === true;
     }
     
-    public static function getAtributoLogado(string $atributo, int $esconder = 0) {
+    public static function getAtributoLogado(string $atributo) {
         Util::startSession(); 
         $value = isset($_SESSION['info_logado']) ? $_SESSION['info_logado'][$atributo] : '';
-        if ($esconder > 0 && strlen($value) > $esconder) {
-            $last_digits = substr($value, -$esconder);
-            $masked_value = str_repeat('.', strlen($value) - $esconder) . $last_digits;
-            return htmlspecialchars($masked_value);
-        }
         return htmlspecialchars($value);
     }
 
@@ -116,33 +124,94 @@ abstract class AdministradorController{
         exit();
     }
 
-    public static function editar() {
+    public static function editarlogado() {
         $campos = ["editar-nome", "editar-data", "editar-email", "editar-telefone", "editar-senha"];
-        $id = AdministradorController::getAtributoLogado("id");
-        ob_start();
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            foreach ($campos as $campo) {
-                if (isset($_POST[$campo])) {
-                    $novoValor = $_POST[$campo];
-                    $nomeAtributo = str_replace("editar-", "", $campo);
-                    AdministradorDao::editar($nomeAtributo, $novoValor, $id);
-                    AdministradorController::atualizarinfo();
-                    break;
-                }
-            }  
+        if (AdministradorController::adminLogado()) {
+            $id = AdministradorController::getAtributoLogado("id");
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                foreach ($campos as $campo) {
+                    if (isset($_POST[$campo])) {
+                        $novoValor = $_POST[$campo];
+                        $nomeAtributo = str_replace("editar-", "", $campo);
+                        AdministradorDao::editar($nomeAtributo, $novoValor, $id);
+                        AdministradorController::atualizarinfoAdmin();
+                        break;
+                    }
+                }  
+            }
+        } else {
+            $id = AdministradorController::getAtributoLogado("clienteid");
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                foreach ($campos as $campo) {
+                    if (isset($_POST[$campo])) {
+                        $novoValor = $_POST[$campo];
+                        $nomeAtributo = str_replace("editar-", "", $campo);
+                        Clientedaoclasse::editar($nomeAtributo, $novoValor, $id);
+                        AdministradorController::atualizarinfoUsuario();
+                        break;
+                    }
+                }  
+            }
         }
     }
-/*  $admindata = AdministradorDao::retornaAdmin($email);
-                    $admin = new Administrador();
-                    $admin-> iniciar($admindata['id'],$admindata['nome'],$admindata['cpf'],$admindata['datanasc'],$admindata['telefone'],$admindata['email'],$admindata['senha']);
-                    return $admin; */
+    public static function editar() {
+
+    }
+
+    public static function recuperarsenha() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["cpf"], $_POST["data"])) {
+                $cpf_form = $_POST['cpf'];
+                $_COOKIE['valor'] = $cpf_form;
+                setcookie("cpf-formulario", $cpf_form, time() + 120);
+                $datanasc_form = $_POST['data'];
+                $datanasc_form = Util::prepararData($datanasc_form);
+                $existe_no_bd = AdministradorDao::verificador($cpf_form, $datanasc_form);
+                if ($existe_no_bd) {
+                    recuperarview::redefinirsenha();
+                } else {
+                    echo Cx::caixaErro("Verifique o cpf e a data de nascimento e tente novamente!");
+                }
+            }
+            if (isset($_POST["novasenha"])) {
+                $novasenha = $_POST['novasenha'];
+                $cpf = $_COOKIE['cpf-formulario'];
+                AdministradorDao::editarSenha($cpf, $novasenha);
+                echo Cx::caixaSucesso("Senha editada com sucesso!");
+                Util::redirect("login.php");
+                exit();
+            }
+        }
+        recuperarview::recuperarSenhaFormulario(); 
+    }
+
+    public static function cadastroImovel(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST["imagem1"])) {
+            [$imagem1, $imagem2, $imagem3, $imagem4, $imagem5, $titulo, $endereco, $preco] = array_map([Util::class, 'prepararTexto'], array_values($_POST));
+            $imovel = new Imovel();
+            $imovel-> Imovel(imagem1: $imagem1, imagem2: $imagem2, imagem3: $imagem3, imagem4: $imagem4, imagem5: $imagem5, titulo: $titulo, endereco: $endereco, preco: $preco);
+            try{
+                imovelDaoClasse::cadastrar($imovel);
+                echo Cx::caixaSucesso("Imóvel cadastrado com sucesso!", 3);
+            }catch(Exception $e){
+                self::$msg = $e->getMessage();
+            }
+
+        }
+        cadastroImovel::formularioImovel();
+        
+    }
+    public static function getQuartos() {
+        return $quartos = imovelDaoClasse::retornaimoveis();
+    }
+    public static function getQuarto($id) {
+        return $quarto = imovelDaoClasse::retornaimovel($id);
+    }
+    
 
     public static function listar(){
         $clientes = AdministradorDao::listar();
-
-       // AdministradorView::listar($clientes);
     }
-
 }
 
 

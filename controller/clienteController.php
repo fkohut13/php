@@ -1,7 +1,6 @@
 <?php
 namespace App\controller;
 require_once("./autoload.php");
-require("./dal/ClienteDao.php");
 use App\util\Functions as Util;
 use App\model\Cliente;
 use APP\dal\Clientedaoclasse;
@@ -14,27 +13,23 @@ abstract class ClienteController{
     private static $msg = null;
 
     public static function cadastrar(){
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST["nome"])) {
+            Util::CSRF();
             [$nome, $cpf, $data, $tel, $email, $senha] = array_map([Util::class, 'prepararTexto'], array_values($_POST));
-
             $dataformatada = Util::prepararData($data);
-
             /* Validações */
-
             $cliente = new Cliente();
             $cliente-> Cliente(nome: $nome, cpf: $cpf, data: $dataformatada, tel: $tel, email: $email, senha: $senha);
-           
-
             try{
                 Clientedaoclasse::cadastrar($cliente);
                 echo Cx::caixaSucesso("Cadastrado com sucesso!", 3);
-                
             }catch(Exception $e){
                 self::$msg = $e->getMessage();
             }
 
         }
-        CadastroView::formulario(); //change to sign up form
+        CadastroView::formulario(); 
     }
 
    

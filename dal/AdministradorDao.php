@@ -63,6 +63,23 @@ abstract class AdministradorDao
             throw new Exception("Ocorreu um erro inesperado " . $e->getMessage() . $e->getCode());
         }
     }
+    public static function verificador($cpf, $datanascimento) {
+        try {
+            $pdo = Conn::getConn();
+            $tabelas = ['administradores', 'clientes'];
+            foreach($tabelas as $tabela){
+                $sql = $pdo->prepare("SELECT cpf FROM $tabela WHERE cpf = ? AND datanasc = ?");
+                $sql->execute([$cpf, $datanascimento]);
+                $result = $sql->fetch(PDO::FETCH_ASSOC);
+                if ($result) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception $e) {
+            throw new Exception("Ocorreu um erro inesperado: ". $e);
+        }
+    }
     public static function listar()
     {
         try {
@@ -97,4 +114,20 @@ abstract class AdministradorDao
             throw new Exception("Ocorreu um erro inesperado " . $e->getMessage() . $e->getCode());
         }
     }
+    public static function editarSenha($cpf, $novaSenha) {
+    try {
+        $pdo = Conn::getConn();
+        $tables = ['administradores', 'clientes'];
+
+        foreach ($tables as $table) {
+            $sql = $pdo->prepare("UPDATE `$table` SET `senha` = ? WHERE `cpf` = ?");
+            $sql->execute([$novaSenha, $cpf]);
+        }
+
+        return true; // Edição bem-sucedida
+    } catch (Exception $e) {
+        throw new Exception("Ocorreu um erro ao editar a senha: " . $e->getMessage());
+        return false; // Edição falhou
+    }
+}
 }

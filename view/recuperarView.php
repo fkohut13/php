@@ -1,7 +1,7 @@
 <?php
-namespace App\view\recuperarView;
+namespace App\view;
 
-class recuperarSenha {
+class novaSenha {
     public static function recuperarSenhaFormulario(){
          ?>
         <div class="login-container">
@@ -33,8 +33,8 @@ class recuperarSenha {
                         <h2 style="font-size:35px ;"><b>Digite sua nova senha</b></h2>
                     </li>
                 </ul>
-                <input type="password" class="inputpassword" placeholder="Confirmar senha" name="confirmarsenha" id="confirmarsenha" required>
-                <input class="enviar" type="submit" value="Entrar">
+                <input type="password" class="inputpassword" placeholder="Digite sua nova senha" name="novasenha" id="confirmarsenha" required>
+                <input class="enviar" type="submit" value="Confirmar senha">
             </section>
         </form>
     </div>

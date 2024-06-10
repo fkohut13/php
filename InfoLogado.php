@@ -4,6 +4,7 @@ require_once("./autoload.php");
 require __DIR__ . '/view/deletarView.php';
 use App\controller\AdministradorController;
 use App\controller\ClienteController;
+use APP\dal\Clientedaoclasse;
 use App\util\Functions;
 use App\view\deletarView\Deletar;
 
@@ -39,14 +40,14 @@ use App\view\deletarView\Deletar;
                 </form>
                 <?php
                 if (isset($_POST['editar-nome'])) {
-                    AdministradorController::editar();
+                    AdministradorController::editarlogado();
                     Functions::redirect("./InfoLogado.php");
                 }
                 ?>
             </div>
             <div class="usuario-detalhe">
                 <label for="cpf">CPF:</label>
-                <span id="cpf"><?php echo htmlspecialchars(AdministradorController::getAtributoLogado('cpf', 5)); ?></span>
+                <span id="cpf"><?php echo htmlspecialchars(AdministradorController::getAtributoLogado('cpf')); ?></span>
             </div>
             <div class="usuario-detalhe">
                 <label for="datanasc">Data nascimento:</label>
@@ -58,7 +59,7 @@ use App\view\deletarView\Deletar;
                 </form>
                 <?php
                 if (isset($_POST['editar-data'])) {
-                    AdministradorController::editar();
+                    AdministradorController::editarlogado();
                     Functions::redirect("./InfoLogado.php");
                 }
                 ?>
@@ -73,7 +74,7 @@ use App\view\deletarView\Deletar;
                     <button type="submit">Editar</button>
                     <?php
                     if (isset($_POST['editar-telefone'])) {
-                        AdministradorController::editar();
+                        AdministradorController::editarlogado();
                         Functions::redirect("./InfoLogado.php");
                     }
                     ?>
@@ -88,7 +89,7 @@ use App\view\deletarView\Deletar;
                     <button type="submit">Editar</button>
                     <?php
                     if (isset($_POST['editar-email'])) {
-                        AdministradorController::editar();
+                        AdministradorController::editarlogado();
                         Functions::redirect("./InfoLogado.php");
                     }
                     ?>
@@ -103,7 +104,7 @@ use App\view\deletarView\Deletar;
                     <button type="submit">Editar</button>
                     <?php
                     if (isset($_POST['editar-senha'])) {
-                        AdministradorController::editar();
+                        AdministradorController::editarlogado();
                         Functions::redirect("./InfoLogado.php");
                     }
                     ?>
@@ -126,7 +127,12 @@ use App\view\deletarView\Deletar;
             } elseif (isset($_POST['delete'])) {
                 Deletar::exibirConfirmacaoDeletar();
             } elseif (isset($_POST['confirmar_deletar'])) {
-                AdministradorController::deletar();
+                if (AdministradorController::adminLogado()) {
+                    AdministradorController::deletar();
+                } else {
+                    ClienteController::deletar();
+                }
+                
             } elseif (isset($_POST['cancelar_deletar'])) {
                 echo "Operação cancelada.";
                 Functions::redirect("./InfoLogado.php");
@@ -141,4 +147,3 @@ use App\view\deletarView\Deletar;
 <script src="index.js"></script>
 
 </html>
-<?php ob_end_flush(); ?>

@@ -117,9 +117,6 @@ use App\controller\AdministradorController as admin;
                     </div>
                 </div>
             </article>
-            <article class="centro-btn">
-                <a href="#" class="btn">Ver todos os imóveis</a>
-            </article>
         </section>
         <section class="servicos">
             <h2>Nossos serviços</h2>
